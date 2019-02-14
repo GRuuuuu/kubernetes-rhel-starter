@@ -67,7 +67,7 @@ $ wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 $ rpm -ivh epel-release-latest-7.noarch.rpm
 ~~~
 
->오늘의 리빙포인트)  ~rpm의 명령어~  
+>오늘의 리빙포인트)  <b>rpm의 명령어</b>   
 >- 패키지 설치 : `rpm -ivh`  
 >- 패키지 목록 : `rpm -qa`  
 >- 패키지 제거 : `rpm -ev`  

@@ -110,7 +110,7 @@ Master 노드의 hosts파일을 수정하여 Ansible의 제어대상이 될 노�
 ~~~bash
 $ vim /etc/ansible/hosts
 ~~~
-~~~conf
+~~~sh
 # /etc/ansible/hosts
 
 [OSEv3:children]

@@ -1,1 +1,1 @@
-# kubernetes-rhel-starter
+# RHEL-starter

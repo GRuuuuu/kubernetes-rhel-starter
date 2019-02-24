@@ -105,7 +105,7 @@ $ yum -y install cri-o
 
 ### Configuring Ansible -inventory
 추가적인 에이전트가 필요없는 Ansible은 ssh데몬을 통해 ssh접속이 가능한 곳이라면 제어할 수 있습니다.  
-> [ssh key교환](https://github.com/GRuuuuu/rhel-starter/tree/master/Openshift/%2301.%20Install%20Openshift%20on%20RHEL#2-prerequisites)을 반드시 진행해야 합니다.  
+> [ssh key교환](https://github.com/GRuuuuu/rhel-starter/tree/master/Openshift/%2301.%20Install%20Openshift%20on%20RHEL#ssh-key-%EA%B5%90%ED%99%98)을 반드시 진행해야 합니다.  
 
 Master 노드의 hosts파일을 수정하여 Ansible의 제어대상이 될 노드들의 정보를 입력해 줍니다.  
 

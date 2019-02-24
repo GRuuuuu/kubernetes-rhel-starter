@@ -10,19 +10,42 @@
 [참고링크2: ppc64le에서의 flannel 구성 : host 서버 외부로의 docker container network 구성](http://hwengineer.blogspot.com/2018/01/ppc64le-flannel-docker-container.html)
 
 ## 2. Prerequisites
-`Docker`가 설치되어 있어야 합니다.  
-`Flannel`빌드에 `golang`이 필요하니, `epel`레포지토리의 추가가 필요합니다.  
-`iptable`의 설치가 필요합니다.
+- `Docker`가 설치되어 있어야 합니다.  
+- `Flannel`빌드에 `golang`이 필요하니, `epel`레포지토리의 추가가 필요합니다.  
+- `iptable`의 설치가 필요합니다.
+- 노드끼리의 [ssh key교환](https://github.com/GRuuuuu/rhel-starter/tree/master/Openshift/%2301.%20Install%20Openshift%20on%20RHEL#ssh-key-%EA%B5%90%ED%99%98)이 필요
 >이 문서에서는 서로다른 <b>두 개</b>의 호스트에 위치한 컨테이너끼리의 통신을 다루고 있습니다.
 
 ## 3. Flannel?
+### Docker Network 구조 -bridge mode
+![Alt text](./img/1.png)
+docker의 기본적인 네트워크 구조는 위와 같습니다. 도커를 설치하고 network interface를 살펴보면 `docker0`라는 virtual interface를 확인할 수 있습니다.   
+`docker0`는 일반적인 interface가 아니라 virtual ethernet bridge입니다. bridge는 기본적으로 L2통신 기반이며 container가 하나 생성될때마다 container의 interface가 하나씩 binding됩니다. (그림의 vethXYZ)  
+따라서 container가 외부로 통신할때는 반드시 `docker0`를 지나야합니다.  
+
+### 서로 다른 호스트에서의 컨테이너 통신
+![Alt text](./img/2.PNG)
+Host1과 Host2는 물리적으로 다른 호스트입니다. 내부에 도커서비스가 돌아가고있고 각각 containerA(123.0.1.1)과 containerB(123.0.1.2)를 서비스하고 있습니다.  
+서로 다른 호스트끼리 하나의 컨테이너 클러스터를 구성하고 싶어 containerA와 containerB를 네트워크상으로 연결하는것이 가능할까요?  
+결론적으로는 <b>불가능합니다</b>. containerA에 할당된 ip는 123.0.1.1로 docker가 할당해준 ip입니다. 이는 도커호스트 내부에서밖에 사용할 수 없습니다.  
+즉 containerA에서 containerB로 ping을 보내려면, (Host1)docker0->eth0->(Host2)eth0->docker0->(ContainerB)eth0의 과정을 통해 전달되어야합니다. 이는 복잡한 포트포워딩이 필요합니다.  
+하지만, 런타임으로 인바운드-아웃바운드 포트가 랜덤하게 정해지는 애플리케이션에서는 포트포워딩으로는 해결할 수 없습니다.
+
+### Flannel
+![Alt text](./img/3.png)
+Flannel은 한마디로 원래의 패킷을 한번더 감싸는 역할을 하게 됩니다. 그림으로 보면 Node1의 Container1에서 Node2의 Container2로 보내는 패킷을 UDP로 감싸게 됩니다.  
+UDP의 헤더에는 출발지와 목적지의 정보가 들어있습니다.  
+이를 통해 컨테이너 간 통신을 포트포워딩 없이도 가능하게 합니다.  
+
+
 
 ## 4. Configure Flannel
-
 ### etcd설정
 `Flannel`을 구성하기 전에 두대의 서버에 모두 `etcd`의 설치를 진행합니다.
+
 > <b>etcd</b>  
->설명설염ㅇ
+>분산 key/value store로 어떤 노드의 어떤 ID의 컨테이너가 어떤 ip로 할당되어있는지 등등에 관한 정보가 저장되어있습니다. 
+
 ~~~sh
 $ yum install -y etcd
 $ systemctl start etcd

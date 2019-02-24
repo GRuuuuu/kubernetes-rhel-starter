@@ -15,8 +15,10 @@
 - 이 문서는 POWER기반으로 하고 있습니다.  
 >cluster를 구성할 때, POWER기반의 노드는 같은 POWER기반의 노드끼리만 묶일 수 있습니다.  
 - 적어도 두개의 노드가 필요!  
-- Master와 Node들은 서로 도메인이름으로 통신이 가능해야 합니다. 
+
  
+### ssh key 교환
+- Master와 Node들은 서로 도메인이름으로 통신이 가능해야 합니다. 
 ~~~bash
 #현재 서버의 hostname 파악 (Master&Node)
 $ hostname 

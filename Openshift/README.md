@@ -43,7 +43,7 @@ Docker+Kubernetes+DevOps
 >   - Pod Cpu, Memory 모니터링 제공
 ### DevOps
 - S2I빌드 및 배포  
-    ![Alt text](./img/1.png)
+    ![Alt text](./img/1.png)  
 
 - Git과 Jenkins를 통한 CI/CD구성 지원  
 개발/스테이징에 빌드, 테스트, 배포를 자동화
@@ -51,15 +51,15 @@ Docker+Kubernetes+DevOps
 > CD (Continuous Delivery) : 빌드 결과물을 지속적으로 전달해서 제품의 질적 향상을 꾀하는 것
 
 - 배포 내역 관리 및 편리한 Rollback
-![Alt text](./img/2.png)
+![Alt text](./img/2.png)  
 특정 시점으로 롤백!
 - Auto-Scaling 기능 제공  
 서비스를 수행하는 pod에 부하가 발생하여 cpu사용률이 증가한다면 자동으로 pod을 추가로 생성하여 확장
-![Alt text](./img/3.png)
+![Alt text](./img/3.png)  
 - 모니터링  
 
 ## Openshift Architecture
-![Alt text](./img/4.png)
+![Alt text](./img/4.png)  
 시스템은 여러 노드들로 구성됩니다. 노드에는 여러개의 pod들이 배치될 수 있으며, pod는 kubernetes가 관리하는 가장 작은 논리 단위이며 여러개의 container들이 배포될 수 있습니다.  
 pod는 Master노드에 의해 관리되고(모니터링, 설치, 부하관리, 오류체크), 개발자는 SCM(Source Code Management)의 커밋이벤트로 애플리케이션을 자동으로 이미지로 빌드하여 배포할 수 있습니다.  
 사용자는 Routing Layer를 통해 애플리케이션에 접근할 수 있습니다.

@@ -156,4 +156,10 @@ inventory_file에는 아까 작성하셨던 hosts파일이 들어가면 됩니�
 $ ansible-playbook -i <inventory_file> /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml 
 $ ansible-playbook -i <inventory_file> /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml 
 ~~~
-
+>Prerequisites.yml
+>- 필요한 소프트웨어 패키지들을 설치 
+>- 컨테이너 런타임을 수정
+>- ㄴ수정할 필요가 없어도 deploy_cluster를 하기 전에 실행하세용  
+>
+>Deploy_cluster.yml
+>- 클러스터 구성에 필요한 것들을 설치

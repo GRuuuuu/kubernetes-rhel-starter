@@ -1,6 +1,6 @@
 # Red Hat Openshift
 
-![Alt text](https://www.openshift.com/hubfs/images/logos/osh/Logotype_RH_OpenShiftContainerPlatform_wLogo_RGB_Black.svg?t=1528900431955!)  
+![Alt text](./img/logo.png)  
 
 ## Openshift란?
 openshift는 기업에 Docker와 Kubernetes를 제공하는 컨테이너 애플리케이션 플랫폼입니다. 사용중인 애플리케이션에 관계없이, 거의 모든 인프라에서 애플리케이션을 쉽고 빠르게 구축, 개발, 배포할 수 있습니다.  

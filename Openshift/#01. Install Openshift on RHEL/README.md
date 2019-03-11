@@ -61,7 +61,7 @@ $ subscription-manager register
 $ subscription-manager refresh
 
 #Openshift Container Plattform Subscription을 찾아서 추가
-$ subscription-manager list —available 
+$ subscription-manager list --available 
 $ subscription-manager attach --pool=<pool_id>  
 ~~~  
 

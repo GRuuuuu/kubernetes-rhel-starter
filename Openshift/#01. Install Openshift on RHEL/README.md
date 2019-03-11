@@ -38,7 +38,7 @@ $ vim etc/hosts
 - 또한, 마스터와 노드사이에는 패스워드없이 통신이 가능하도록, ssh key교환을 해야합니다.  
 ~~~bash
 #(모든 서버에서 수행)
-#key 생성
+#key 생성 (enter연타)
 $ ssh-keygen
 
 #공개키 배포 

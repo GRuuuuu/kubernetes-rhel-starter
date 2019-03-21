@@ -91,7 +91,7 @@ $ subscription-manager repos \
     --enable="rhel-7-server-for-power-9-rhscl-rpms" \
     --enable="rhel-7-for-power-9-ose-3.10-rpms"
 ~~~
-
+> repository가 붙는데 시간이 오래걸릴수 있습니다. pool id를 정확히 붙였는데도 repository에서 찾을수 없다는 에러가 발생한다면, 일단 컴퓨터를 끄고 정신을 수양하는 시간을 가집시다. (원인을 알수없음)
 ### Install Package
 설치에 필요한 파일들을 인스톨합니다.
 ~~~bash
